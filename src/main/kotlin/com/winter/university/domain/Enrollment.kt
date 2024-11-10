@@ -30,9 +30,6 @@ class Enrollment() {
 }
 
 data class EnrollmentId(
-    @Column(name = "student_id")
     val studentId: Int,
-
-    @Column(name = "lecture_id")
     val lectureId: Int
 ) : Serializable

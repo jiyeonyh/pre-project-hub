@@ -10,7 +10,7 @@ class Lecture (
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
 
-    var lectureName: String,
+    var name: String,
 
     var time: LocalTime,
 
