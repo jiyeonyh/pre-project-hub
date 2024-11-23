@@ -5,7 +5,7 @@ import com.winter.university.repository.ProfessorRepository
 
 class LectureService(
     private val lectureRepository: LectureRepository,
-    private val professorRepository: ProfessorRepository
+    private val professorRepository: ProfessorRepository,
 ) {
     fun updateLectureProfessor(professorId: Int, lectureId: Int){
         val lecture = lectureRepository.findById(lectureId)

@@ -1,6 +1,12 @@
 package com.winter.university.domain
 
-import jakarta.persistence.*
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
+import jakarta.persistence.IdClass
+import jakarta.persistence.Id
+import jakarta.persistence.Column
+import jakarta.persistence.ManyToOne
+import jakarta.persistence.JoinColumn
 import java.io.Serializable
 
 @Entity
@@ -9,11 +15,11 @@ import java.io.Serializable
 class Enrollment() {
     @Id
     @Column(name = "student_id")
-    var studentId: Int = 0
+    var studentId: Int? = null
 
     @Id
     @Column(name = "lecture_id")
-    var lectureId: Int = 0
+    var lectureId: Int? = null
 
     @ManyToOne
     @JoinColumn(name = "student_id", insertable = false, updatable = false)
