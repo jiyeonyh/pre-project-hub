@@ -12,7 +12,7 @@ class StudentService(
     private val enrollmentRepository: EnrollmentRepository,
 ) {
     fun getAllStudents(): List<Student> {
-        return studentRepository.findAll().toList()
+        return studentRepository.findAll()
     }
 
     fun getLecturesByStudentId(studentId: Int): List<Lecture> {

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class LectureService(
     private val lectureRepository: LectureRepository,
-    private val professorRepository: ProfessorRepository
+    private val professorRepository: ProfessorRepository,
 ) {
     fun getLectureListForProfessor(professorId: Int): List<Lecture> {
         val professor = professorRepository.findById(professorId)
