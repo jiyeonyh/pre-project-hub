@@ -5,16 +5,16 @@ GET http://localhost:8080/student/lectures?studentId=1
 GET http://localhost:8080/professor/lectures?professorId=1
 
 ### 학생 ID, 강의 ID로 수강신청 -> 수정 필요
-POST http://localhost:8080/enrollment
+POST http://localhost:8080/enrollment/
 Content-Type: application/json
 
 {
   "studentId": 1,
-  "lectureId": 2
+  "lectureId": 1
 }
 
 ### 학생 ID, 강의 ID로 수강신청 삭제 -> 수정 필요
-DELETE http://localhost:8080/enrollment/1/1
+DELETE http://localhost:8080/enrollment/1
 Content-Type: application/json
 
 ### 교수 ID, 강의 ID로 강의 하는 교수 업데이트

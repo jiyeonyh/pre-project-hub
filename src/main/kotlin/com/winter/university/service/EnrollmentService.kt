@@ -26,10 +26,12 @@ class EnrollmentService(
         } ?: throw IllegalStateException("이미 수강신청 내역이 존재합니다.")
     }
 
-    fun deleteEnrollment(studentId: Int, lectureId: Int) {
-        enrollmentRepository.existsByStudentIdAndLectureId(studentId, lectureId).takeUnless { it }?.let {
-            enrollmentRepository.deleteEnrollmentByStudentIdAndLectureId(studentId, lectureId)
-        } ?: throw IllegalStateException("삭제할 수강신청 내역이 존재하지않습니다.")
+    fun deleteEnrollment(enrollmentId: Int) {
+        enrollmentRepository.findById(enrollmentId)
+            .ifPresentOrElse(
+                { enrollment -> enrollmentRepository.delete(enrollment) },
+                { throw IllegalStateException("삭제할 수강신청 내역이 존재하지 않습니다")}
+        )
     }
 
 }

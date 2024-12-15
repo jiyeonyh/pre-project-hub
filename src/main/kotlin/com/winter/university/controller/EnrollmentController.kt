@@ -1,23 +1,29 @@
 package com.winter.university.controller
 
+import com.winter.university.controller.reponse.BaseResponse
 import com.winter.university.controller.request.EnrollmentSaveRequest
 import com.winter.university.service.EnrollmentService
-import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.PathVariable
 
 @RestController
+@RequestMapping("/enrollment")
 class EnrollmentController(
     private val enrollmentService: EnrollmentService
 ) {
-    @PostMapping("/enrollment")
-    fun save(@RequestBody request: EnrollmentSaveRequest): ResponseEntity<String> {
+    @PostMapping("/")
+    fun save(@RequestBody request: EnrollmentSaveRequest): BaseResponse<String> {
         enrollmentService.enrollStudentInLecture(request.studentId, request.lectureId)
-        return ResponseEntity.ok().body("성공")
+        return BaseResponse.success(null)
     }
 
-    @DeleteMapping("/enrollment/{studentId}/{lectureId}")
-    fun delete(@PathVariable studentId: Int, @PathVariable lectureId: Int): ResponseEntity<String> {
-        enrollmentService.deleteEnrollment(studentId, lectureId)
-        return ResponseEntity.ok().body("성공")
+    @DeleteMapping("/{enrollmentId}")
+    fun delete(@PathVariable enrollmentId: Int): BaseResponse<String> {
+        enrollmentService.deleteEnrollment(enrollmentId)
+        return BaseResponse.success(null)
     }
 }

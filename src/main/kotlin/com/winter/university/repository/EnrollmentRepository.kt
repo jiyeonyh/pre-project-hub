@@ -12,6 +12,4 @@ interface EnrollmentRepository : CrudRepository<Enrollment, Int> {
     fun findLecturesByStudentId(@Param("studentId") studentId: Int): List<Lecture>
 
     fun existsByStudentIdAndLectureId(studentId: Int, lectureId: Int): Boolean
-
-    fun deleteEnrollmentByStudentIdAndLectureId(studentId: Int, lectureId: Int)
 }

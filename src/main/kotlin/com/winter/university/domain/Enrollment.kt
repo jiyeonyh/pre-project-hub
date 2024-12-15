@@ -1,41 +1,34 @@
 package com.winter.university.domain
 
-import jakarta.persistence.Entity
-import jakarta.persistence.Table
-import jakarta.persistence.IdClass
-import jakarta.persistence.Id
 import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.Table
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
 import jakarta.persistence.ManyToOne
+import jakarta.persistence.FetchType
 import jakarta.persistence.JoinColumn
-import java.io.Serializable
 
 @Entity
 @Table(name = "enrollment")
-@IdClass(EnrollmentId::class)
-class Enrollment() {
-    @Id
+class Enrollment(
     @Column(name = "student_id")
-    var studentId: Int? = null
+    var studentId: Int,
 
-    @Id
     @Column(name = "lecture_id")
-    var lectureId: Int? = null
+    var lectureId: Int,
+){
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    var id: Int? = null
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "student_id", insertable = false, updatable = false)
-    var student: Student? = null
+    lateinit var student: Student
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lecture_id", insertable = false, updatable = false)
-    var lecture: Lecture? = null
-
-    constructor(studentId: Int, lectureId: Int) : this() {
-        this.studentId = studentId
-        this.lectureId = lectureId
-    }
+    lateinit var lecture: Lecture
 }
-
-data class EnrollmentId(
-    val studentId: Int,
-    val lectureId: Int
-) : Serializable
